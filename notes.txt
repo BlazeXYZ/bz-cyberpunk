@@ -36,8 +36,16 @@ To test:
   open the files in /syntax_tests (JavaSyntax.java, python_syntax.py).
 
 To publish the plugin:
-  1. Bump <version> and add change notes in 'resources/META-INF/plugin.xml'.
-  2. python ./scripts/package.py   (writes dist/bz-cyberpunk-<version>.jar)
-  3. First release: upload the jar at https://plugins.jetbrains.com/plugin/add
+  1. Bump <version> and add a matching <b>VERSION</b><ul>...</ul> entry to
+     <change-notes> in 'resources/META-INF/plugin.xml'.
+  2. Commit and push to main, then move the "release" tag onto that commit:
+       git tag -f release
+       git push -f origin release
+     The Release workflow (.github/workflows/release.yml) then builds the jar,
+     tags the commit v<version> (e.g. v1.0.0) and publishes a GitHub release
+     with the jar and the change notes. It fails if that version was already
+     released. It can also be run by hand from the repo's Actions tab.
+  3. Upload the jar to the JetBrains Marketplace:
+     First release: https://plugins.jetbrains.com/plugin/add
      Later releases: plugin page > Edit > Versions > Upload Update.
-  4. Commit, tag (git tag v<version>) and push.
+  To build locally instead: python ./scripts/package.py

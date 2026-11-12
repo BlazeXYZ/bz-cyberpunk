@@ -1,7 +1,7 @@
 <idea-plugin>
   <id>com.blazexyz.bz-cyberpunk</id>
   <name>BZ-Cyberpunk</name>
-  <version>2.0.0</version>
+  <version>1.0.0</version>
   <vendor url="https://github.com/blazexyz/bz-cyberpunk">BlazeXYZ</vendor>
 
   <description><![CDATA[
@@ -22,16 +22,16 @@
     ]]></description>
 
   <change-notes><![CDATA[
-      <b>2.0.0</b>
+      <b>1.0.0</b>
       <ul>
-        <li>New palette taken from Cyberpunk 2077 (HUD red, signature yellow,
+        <li>First release.</li>
+        <li>Palette taken from Cyberpunk 2077 (HUD red, signature yellow,
             netrunner cyan) and Cyberpunk: Edgerunners (magenta, acid green,
             violet), on indigo-tinted near-black backgrounds.</li>
-        <li>Rebuilt the editor color scheme with explicit Java support and
-            consistent diff, VCS, debugger, inlay hint and inspection colors.</li>
-        <li>The theme now inherits from the new UI Dark theme and recolors its
-            palette, so newer UI components match.</li>
-        <li>Added an Islands variant for IntelliJ 2025.3 and later.</li>
+        <li>Editor color scheme with explicit Java support and consistent
+            diff, VCS, debugger, inlay hint and inspection colors.</li>
+        <li>Builds on the new UI Dark theme, so newer UI components match.</li>
+        <li>Islands variant for IntelliJ 2025.3 and later.</li>
         <li>Requires IntelliJ-based IDEs 2023.3 or later. There is no upper
             version limit.</li>
       </ul>

@@ -1,0 +1,80 @@
+name: Release
+
+# Builds the plugin jar and publishes a GitHub release whenever the "release"
+# tag is pushed. Move the tag onto the commit to release and force-push it:
+#
+#   git tag -f release
+#   git push -f origin release
+#
+# The version comes from <version> in resources/META-INF/plugin.xml. The
+# workflow tags the same commit v<version> (e.g. v1.0.0) and uses that
+# version's <change-notes> entry as the release notes.
+#
+# It can also be started by hand from the Actions tab (Run workflow).
+
+on:
+  push:
+    tags: [release]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Read version
+        id: info
+        run: |
+          VERSION="$(python scripts/release_info.py version)"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Releasing version $VERSION from $GITHUB_SHA"
+
+      - name: Make sure the version is new
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.info.outputs.tag }}
+        run: |
+          if gh release view "$TAG" > /dev/null 2>&1; then
+            echo "::error::Release $TAG already exists. Bump <version> in resources/META-INF/plugin.xml before releasing."
+            exit 1
+          fi
+          # A version tag without a release is fine (e.g. pushed by hand), as
+          # long as it points at this commit, so the jar matches its source.
+          TAG_SHA="$(git ls-remote origin "refs/tags/$TAG" "refs/tags/$TAG^{}" | sort -k2 -r | head -n1 | cut -f1)"
+          if [ -n "$TAG_SHA" ] && [ "$TAG_SHA" != "$GITHUB_SHA" ]; then
+            echo "::error::Tag $TAG already points at another commit ($TAG_SHA). Bump <version> in resources/META-INF/plugin.xml before releasing."
+            exit 1
+          fi
+
+      - name: Build plugin jar
+        run: python scripts/package.py
+
+      - name: Write release notes
+        run: python scripts/release_info.py notes > release-notes.md
+
+      - name: Publish GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.info.outputs.tag }}
+          VERSION: ${{ steps.info.outputs.version }}
+        run: |
+          gh release create "$TAG" \
+            "dist/bz-cyberpunk-$VERSION.jar" \
+            --target "$GITHUB_SHA" \
+            --title "BZ-Cyberpunk $VERSION" \
+            --notes-file release-notes.md
