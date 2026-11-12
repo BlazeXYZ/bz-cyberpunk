@@ -1,0 +1,51 @@
+<idea-plugin>
+  <id>com.blazexyz.bz-cyberpunk</id>
+  <name>BZ-Cyberpunk</name>
+  <version>2.0.0</version>
+  <vendor url="https://github.com/blazexyz/bz-cyberpunk">BlazeXYZ</vendor>
+
+  <description><![CDATA[
+    A neon-noir dark theme inspired by the UI of <b>Cyberpunk 2077</b> and the
+    look of <b>Cyberpunk: Edgerunners</b>.<br/>
+    <br/>
+    <ul>
+      <li>Indigo-black backgrounds with HUD red selections, yellow focus/caret
+          accents and netrunner cyan.</li>
+      <li>Edgerunners magenta, acid green and braindance violet in the syntax
+          palette.</li>
+      <li>Full Java highlighting (records, enums, type parameters, annotations,
+          static imports, Javadoc), plus Kotlin, Python, Rust, web languages,
+          Markdown, the console and the debugger.</li>
+      <li>Two variants: <b>BZ-Cyberpunk</b> for the new UI and
+          <b>BZ-Cyberpunk Islands</b> for the Islands UI (2025.3+).</li>
+    </ul>
+    ]]></description>
+
+  <change-notes><![CDATA[
+      <b>2.0.0</b>
+      <ul>
+        <li>New palette taken from Cyberpunk 2077 (HUD red, signature yellow,
+            netrunner cyan) and Cyberpunk: Edgerunners (magenta, acid green,
+            violet), on indigo-tinted near-black backgrounds.</li>
+        <li>Rebuilt the editor color scheme with explicit Java support and
+            consistent diff, VCS, debugger, inlay hint and inspection colors.</li>
+        <li>The theme now inherits from the new UI Dark theme and recolors its
+            palette, so newer UI components match.</li>
+        <li>Added an Islands variant for IntelliJ 2025.3 and later.</li>
+        <li>Requires IntelliJ-based IDEs 2023.3 or later. There is no upper
+            version limit.</li>
+      </ul>
+    ]]>
+  </change-notes>
+
+  <!-- https://plugins.jetbrains.com/docs/intellij/build-number-ranges.html
+       "parentTheme" needs 2023.3+; no until-build so future IDEs stay compatible. -->
+  <idea-version since-build="233"/>
+
+  <depends>com.intellij.modules.platform</depends>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <themeProvider id="6cbb9a83-7bc3-4a3c-aa31-9b4754fce57c" path="/bz-cyberpunk.theme.json"/>
+    <themeProvider id="69670a57-4e1f-47f3-aac4-c75a57c0a83f" path="/bz-cyberpunk-islands.theme.json" targetUi="islands"/>
+  </extensions>
+</idea-plugin>

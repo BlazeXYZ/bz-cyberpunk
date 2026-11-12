@@ -1,0 +1,43 @@
+HOW TO UPDATE THE THEME
+
+Source files                                   Generated files (don't edit)
+  resources/bz-cyberpunk.theme.json  ------+--> resources/bz-cyberpunk-islands.theme.json
+  scripts/builder/islands_overrides.json --+
+  scripts/builder/generate_icls.py --> scripts/builder/BZ-Cyberpunk.icls --> resources/bz-cyberpunk.xml
+
+To update the UI colors:
+  1. Edit 'resources/bz-cyberpunk.theme.json'. The named palette lives in its
+     "colors" block. The Gray*/Blue*/Green*/... ramps recolor the parent
+     (new UI "Dark") theme. The "Blue" ramp holds the red brand accent on purpose.
+  2. Islands-only changes go in 'scripts/builder/islands_overrides.json'.
+     Its "colors" block overrides the Islands semantic names (editor-bg,
+     selection-bg-active, ...). It is deep-merged over the main theme.
+  3. Run the builder:  python ./scripts/builder/builder.py
+
+To update the editor color scheme:
+  1. Edit the COLORS / ATTRS tables in 'scripts/builder/generate_icls.py'.
+     Use palette names from the theme JSON "colors" block, not hex values.
+  2. python ./scripts/builder/generate_icls.py ./scripts/builder/BZ-Cyberpunk.icls
+  3. python ./scripts/builder/builder.py
+     (The builder fails if it finds a palette name that isn't defined.)
+  To pull in changes made in the IDE, export the 'BZ-Cyberpunk' scheme, diff it
+  against resources/bz-cyberpunk.xml, and copy the changes into
+  generate_icls.py.
+
+Palette naming:
+  night0..night12   indigo-tinted background ramp (dark -> light)
+  text0..text5      foreground ramp (bright -> dim)
+  <accent>T<NN>     accent blended at NN% over the editor background (night2),
+                    e.g. redT40 = red at 40% opacity over night2
+
+To test:
+  python ./scripts/package.py, then in the IDE: Settings > Plugins > gear icon >
+  Install Plugin from Disk... > dist/bz-cyberpunk-<version>.jar, restart, and
+  open the files in /syntax_tests (JavaSyntax.java, python_syntax.py).
+
+To publish the plugin:
+  1. Bump <version> and add change notes in 'resources/META-INF/plugin.xml'.
+  2. python ./scripts/package.py   (writes dist/bz-cyberpunk-<version>.jar)
+  3. First release: upload the jar at https://plugins.jetbrains.com/plugin/add
+     Later releases: plugin page > Edit > Versions > Upload Update.
+  4. Commit, tag (git tag v<version>) and push.

@@ -1,0 +1,102 @@
+{
+  "name": "BZ-Cyberpunk Islands",
+  "parentTheme": "Islands Dark",
+  "colors": {
+    "text-default": "#d8d5ea",
+    "text-muted": "#8e88aa",
+    "text-secondary": "#6c678a",
+    "text-disabled": "#4f4a68",
+    "text-over-accent": "#000000",
+    "text-link": "#00f0ff",
+    "text-error": "#ff003c",
+    "text-warning": "#fcee0a",
+    "text-success": "#4dffa8",
+    "editor-text": "#d8d5ea",
+    "layer-0-bg": "#0c0b13",
+    "layer-0-border": "#201d2d",
+    "layer-0-bg-inline": "#15131e",
+    "layer-0-border-inline": "#272335",
+    "layer-1-bg": "#1a1825",
+    "layer-1-border": "#38324b",
+    "layer-1-bg-inline": "#201d2d",
+    "layer-1-border-inline": "#38324b",
+    "layer-2-bg": "#272335",
+    "layer-2-bg-inline": "#2f2a40",
+    "layer-2-border": "#38324b",
+    "layer-2-border-inline": "#433c58",
+    "accent-brand-bg": "#ff5952",
+    "accent-brand-border": "#ff5952",
+    "accent-brand-bg-secondary": "#491e23",
+    "accent-brand-border-secondary": "#9e3a39",
+    "accent-error-bg": "#ff003c",
+    "accent-error-border": "#ff003c",
+    "accent-error-bg-secondary": "#49081d",
+    "accent-error-border-secondary": "#9e042c",
+    "accent-warning-bg": "#fcee0a",
+    "accent-warning-border": "#fcee0a",
+    "accent-warning-bg-secondary": "#302d12",
+    "accent-warning-border-secondary": "#9c930e",
+    "accent-success-bg": "#4dffa8",
+    "accent-success-border": "#4dffa8",
+    "accent-success-bg-secondary": "#163029",
+    "accent-success-border-secondary": "#339d6c",
+    "accent-ai-bg": "#251c36",
+    "accent-ai-border": "#6e4fa1",
+    "editor-bg": "#0c0b13",
+    "tool-window-bg": "#15131e",
+    "tool-window-bg-alt": "#1a1825",
+    "tool-window-border": "#201d2d",
+    "main-window-bg": "#050409",
+    "main-window-bg-alt": "#100f18",
+    "main-window-border": "#201d2d",
+    "dialog-bg": "#15131e",
+    "popup-bg": "#1a1825",
+    "popup-border": "#38324b",
+    "control-brand-bg": "#ff5952",
+    "control-brand-border": "#00f0ff",
+    "selection-bg-active": "#6d2a2c",
+    "selection-bg-active-muted": "#491e23",
+    "selection-bg-inactive": "#2f2a40",
+    "tab-selected-bg-active": "#30171c",
+    "tab-selected-bg-inactive": "#201d2d",
+    "tab-selected-border-active": "#ff5952",
+    "tab-selected-border-inactive": "#4f4766",
+    "toolbar-selected-bg": "#6d2a2c",
+    "toolbar-selected-bg-hovered": "#9e3a39",
+    "toolbar-selected-bg-active": "#ff5952",
+    "toolbar-run-bg": "#266d4f",
+    "toolbar-stop-bg": "#9e042c",
+    "search-match-bg": "#6c660f",
+    "popup-completion-match-text": "#00f0ff",
+    "got-it-bg": "#201d2d",
+    "got-it-border": "#00f0ff",
+    "got-it-text-link": "#00f0ff",
+    "presentation-assistant-bg": "#6d2a2c",
+    "icon-default-stroke": "#b3aecb",
+    "tree-indent-guide-border": "#272335"
+  },
+  "ui": {
+    "Island.borderColor": "night4",
+    "MainWindow": {
+      "background": "night0",
+      "Tab": {
+        "background": "night0"
+      }
+    },
+    "MainToolbar": {
+      "background": "night0",
+      "inactiveBackground": "night0",
+      "borderColor": "night0"
+    },
+    "StatusBar": {
+      "background": "night0",
+      "borderColor": "night0"
+    },
+    "ToolWindow": {
+      "Stripe": {
+        "background": "night0",
+        "borderColor": "night0"
+      }
+    }
+  }
+}
